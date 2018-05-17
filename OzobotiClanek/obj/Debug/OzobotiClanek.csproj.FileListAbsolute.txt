@@ -1,0 +1,7 @@
+C:\Users\VSk\OneDrive\MFF UK\MGR\OzobotiClanek\OzobotiClanek\bin\Debug\OzobotiClanek.exe.config
+C:\Users\VSk\OneDrive\MFF UK\MGR\OzobotiClanek\OzobotiClanek\bin\Debug\OzobotiClanek.exe
+C:\Users\VSk\OneDrive\MFF UK\MGR\OzobotiClanek\OzobotiClanek\bin\Debug\OzobotiClanek.pdb
+C:\Users\VSk\OneDrive\MFF UK\MGR\OzobotiClanek\OzobotiClanek\obj\Debug\OzobotiClanek.csprojResolveAssemblyReference.cache
+C:\Users\VSk\OneDrive\MFF UK\MGR\OzobotiClanek\OzobotiClanek\obj\Debug\OzobotiClanek.csproj.CoreCompileInputs.cache
+C:\Users\VSk\OneDrive\MFF UK\MGR\OzobotiClanek\OzobotiClanek\obj\Debug\OzobotiClanek.exe
+C:\Users\VSk\OneDrive\MFF UK\MGR\OzobotiClanek\OzobotiClanek\obj\Debug\OzobotiClanek.pdb
