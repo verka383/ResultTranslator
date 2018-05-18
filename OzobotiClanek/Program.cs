@@ -11,10 +11,73 @@ namespace OzobotiClanek
     {
         static void Main(string[] args)
         {
-            parseFile(@"C:\Users\VSk\OneDrive\MFF UK\MGR\OzobotiClanek\OzobotiClanek\bin\Debug\clanek\1-robust\1.txt");
+            parseTurns(@"C:\Users\VSk\OneDrive\MFF UK\MGR\OzobotiClanek\OzobotiClanek\bin\Debug\clanek\turning\1.txt");
         }
 
-        static void  parseFile(string fileName)
+        static void parseTurns(string fileName)
+        {
+            StreamReader sr = new StreamReader(fileName);
+
+            string line;
+            int counter = 0;
+
+            while ((line = sr.ReadLine()) != null)
+            {
+                string[] parts = line.Split(' ');
+                int[] vrcholy = new int[parts.Length + 1];
+                int[] smery = new int[parts.Length + 1];
+                int[] res = new int[parts.Length + 1];
+
+                for (int i = 0; i < parts.Length; i++)
+                {
+                    int nodeV = int.Parse(parts[i]) - 1;
+                    int vrchol = nodeV / 4;
+                    int smer = nodeV % 4;
+                    vrcholy[i] = vrchol;
+                    smery[i] = smer;
+
+                    if (i > 0)
+                    {
+                        if (vrcholy[i-1] == vrcholy[i] && smery[i-1] == smery[i])
+                        {
+                            res[i] = 5; // skutecne cekani
+                        }
+                        else if (vrcholy[i-1] == vrcholy[i])
+                        {
+                            res[i] = smery[i]-smery[i-1];  // ukladam smer
+                        }
+                        else if (smery[i-1] == smery[i])
+                        {
+                            res[i] = 4; // jedu rovne
+                        }
+                    }
+                    else
+                    {
+                        res[i] = 4; // jedu rovne v prvnim kroku
+                    }
+                }
+                res[parts.Length] = 4;
+
+                string outFileName = fileName + counter + ".txt";
+                WriteOutputTurning(outFileName, res);
+
+                counter++;
+            }
+        }
+
+        static void WriteOutputTurning(string fileName, int[] res)
+        {
+            StreamWriter sw = new StreamWriter(fileName);
+
+            for (int i = 0; i < res.Length - 1; i++)
+            {
+                sw.WriteLine(res[i]);
+            }
+
+            sw.Close();
+        }
+
+        static void  parseFile(string fileName, bool turning)
         {
             StreamReader sr = new StreamReader(fileName);          
 
@@ -29,6 +92,12 @@ namespace OzobotiClanek
                 for (int i = 0; i < parts.Length; i++)
                 {
                     int nodeV = int.Parse(parts[i]) - 1;
+
+                    if (turning)
+                    {
+                        nodeV = nodeV / 4;
+                    }
+
                     nodes[i] = new cord(nodeV % 8, nodeV / 8);
                 }
 
@@ -103,8 +172,8 @@ namespace OzobotiClanek
     {
         public override DIRECTION translateMove(cord from, cord to, ref View v)
         {
-            int second = to.x - from.x;
-            int first = to.y - from.y;
+            int first = to.x - from.x;
+            int second = to.y - from.y;
 
             if (first > 0) // dolu
             {
@@ -136,8 +205,8 @@ namespace OzobotiClanek
     {
         public override DIRECTION translateMove(cord from, cord to, ref View v)
         {
-            int second = to.x - from.x;
-            int first = to.y - from.y;
+            int first = to.x - from.x;
+            int second = to.y - from.y;
 
             if (first > 0) // dolu
             {
@@ -169,8 +238,8 @@ namespace OzobotiClanek
     {
         public override DIRECTION translateMove(cord from, cord to, ref View v)
         {
-            int second = to.x - from.x;
-            int first = to.y - from.y;
+            int first = to.x - from.x;
+            int second = to.y - from.y;
 
             if (first > 0) // dolu
             {
@@ -202,8 +271,8 @@ namespace OzobotiClanek
     {
         public override DIRECTION translateMove(cord from, cord to, ref View v)
         {
-            int second = to.x - from.x;
-            int first = to.y - from.y;
+            int first = to.x - from.x;
+            int second = to.y - from.y;
 
             if (first > 0) // dolu
             {
